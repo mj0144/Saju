@@ -15,7 +15,7 @@ function App() {
     return (
         <BrowserRouter basename="/">
                         <Routes>
-                            <Route exact path="/*" element={<Main />} /> {/* => 메인페이지 */}
+                            <Route exact path="/" element={<Main />} /> {/* => 메인페이지 */}
                         </Routes>
         </BrowserRouter>
     );

@@ -1,12 +1,15 @@
 import React from "react";
+import { MainContainer } from "./style";
+
 
 const Main = () => {
 
 
     return (
-        <section style={{backgroundColor: "F3B5BB"}}>
+        <MainContainer>
+        
             <p>빵빵</p>
-        </section>
+        </MainContainer>
     )
 }
 
