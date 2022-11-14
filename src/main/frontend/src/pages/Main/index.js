@@ -2,6 +2,7 @@ import React from "react";
 import Title from "assets/images/title.png";
 import Visual from "assets/images/visual.png";
 import { MainContainer, Frame } from "./style";
+import { Link } from "react-router-dom";
 
 
 const Main = () => {
@@ -19,7 +20,7 @@ const Main = () => {
                 <p>현재까지 {num}명이 참여했습니다.</p>
 
                 <article>
-                    <strong>테스트 시작!</strong>
+                    <Link to="/Info"><strong>테스트 시작!</strong></Link>
                 </article>
             </Frame>
         </MainContainer>

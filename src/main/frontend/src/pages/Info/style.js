@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const MainContainer = styled.section`
+export const InfoContainer = styled.section`
     background-color: #F3B5BB;
     width: 100%;
     display: flex;
@@ -28,28 +28,38 @@ export const Frame = styled.div`
             font-weight: 900;
         }
     }
+   
+`
 
-    & p{
-        color: #6E6360;
-        font-weight: 900;
-        font-size: 20px;
+export const FemailInfo = styled.div`
+    border: 1px solid #A58187;
+    width: 80%;
+    padding: 10% 0;
+    display: flex;
+    justify-content: space-evenly;
+
+    & figure{
+        border: 1px solid #9B6F73;
+        border-radius: 50%;
+        box-sizing: border-box;
+        background-color: #fff;
+        padding: 6%;
     }
 
-    & article{
-        background-color: #EBAAB7;
-        padding: 20px 40px;
-        border-radius: 40px;
-        margin-top: 40px;
-
-        & strong{
-            color: #fff;
-            font-size: 20px;
-            font-weight: 900;
-            cursor: pointer;
-        }
-
-        & strong:hover{
-            color: brown;
-        }
+    & dl{
+        display: flex;
+        align-items: baseline;
     }
+
+`
+
+
+export const MalelInfo = styled.div`
+    border: 1px solid #A58187;
+
+`
+
+export const SubmitForm = styled.form`
+
+
 `
