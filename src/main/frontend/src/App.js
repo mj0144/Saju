@@ -7,12 +7,6 @@ import  Info from 'pages/Info';
 
 function App() {
 
-    // useEffect(() => {
-    //     axios.get('/api/test')
-    //         .then(response => setHello(response.data))
-    //         .catch(error => console.log(error))
-    // }, []);
-
     return (
         <BrowserRouter basename="/">
                         <Routes>

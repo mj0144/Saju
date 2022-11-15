@@ -2,6 +2,7 @@ import React from "react";
 import Title from "assets/images/title.png";
 import Femail from "assets/images/femail.png";
 import Male from "assets/images/male.png";
+import { BsPlus } from "@react-icons/all-files/bs/BsPlus";
 import { InfoContainer, Frame, FemailInfo, MalelInfo, SubmitForm } from "./style";
 
 const Info = () =>{
@@ -17,6 +18,7 @@ const Info = () =>{
                 <FemailInfo>
                     <figure>
                         <img src={Femail} alt="Feamil"/>
+                        <span><BsPlus /></span>
                     </figure>
 
                     <SubmitForm>
@@ -26,11 +28,13 @@ const Info = () =>{
                             </dt>
                             <dd>
                                 <label>여</label>
-                                <input type="checkbox"/>
+                                <input type="checkbox" id="femail"/>
+                                <label htmlFor="femail"></label>
                             </dd>
                             <dd>
                                 <label>남</label>
-                                <input type="checkbox"/>
+                                <input type="checkbox" id="male"/>
+                                <label htmlFor="male"></label>
                             </dd>
                         </dl>
                         <ul>
