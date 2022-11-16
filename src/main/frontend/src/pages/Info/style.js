@@ -11,7 +11,7 @@ export const InfoContainer = styled.section`
 export const Frame = styled.div`
     max-width: 600px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #FBE8E7;
     margin: 6% auto 2%;
     display: flex;
@@ -22,6 +22,7 @@ export const Frame = styled.div`
     text-align: center;
     
     & div{
+        padding-top: 8%;
         &  h1{
             color: #9B6F73;
             font-size: 24px;
@@ -31,12 +32,13 @@ export const Frame = styled.div`
    
 `
 
-export const FemailInfo = styled.div`
+export const InsertInfo = styled.div`
     border: 1px solid #A58187;
     width: 90%;
-    padding-bottom: 10%;
     display: flex;
+    flex-wrap: wrap;
     gap: 2em;
+    position: relative;
     justify-content: flex-end;
 
     & figure{
@@ -75,7 +77,66 @@ export const FemailInfo = styled.div`
         }
     }
 
-    & form{
+    .noTime{
+        width: 100%;
+        line-height: 2;
+        
+        & input[type="checkbox"]{
+            display: none;
+        }
+
+        input[type="checkbox"] + label{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #A58187;
+            position: relative;
+            background-color: #fff;
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+
+        input[id="femailBorn"]:checked + label{
+            background-color: #EBAAB7;
+            border: 1px solid #fff;
+        }
+
+        input[id="femailBorn"]:checked + label::after{
+            content: '✔';
+            font-size: 24px;
+            text-align: center;
+            position: absolute;
+            left: 6px;
+            top: -6px;
+            color: #fff;
+        }
+
+        input[id="maleBorn"]:checked + label{
+            background-color: #EBAAB7;
+            border: 1px solid #fff;
+        }
+
+        input[id="maleBorn"]:checked + label::after{
+            content: '✔';
+            font-size: 24px;
+            text-align: center;
+            position: absolute;
+            left: 6px;
+            top: -6px;
+            color: #fff;
+        }
+
+        & span{
+            color: #6E6360;
+            font-size: 24px;
+            font-weight: 600;
+            vertical-align: sub;
+        }
+    }
+
+`
+
+export const SubmitForm = styled.form`
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -84,17 +145,17 @@ export const FemailInfo = styled.div`
 
         & dl{
             display: flex;
-            align-items: baseline;
+            align-items: center;
             font-size: 24px;
             font-weight: 900;
-            gap: 40px;
+            gap: 32px;
             justify-content: flex-start;
             color: #6E6360;
 
             & dd{
-                & input{
-                    width: 18px;
-                    height: 18px;
+
+                & label:first-of-type{
+                    padding-right: 6px;
                 }
 
                 & input[type="checkbox"]{
@@ -111,19 +172,19 @@ export const FemailInfo = styled.div`
                     background-color: #fff;
                 }
 
-                input[id="femail"]:checked + label{
+                input[id="femailOne"]:checked + label{
                     background-color: #EBAAB7;
+                    border: 1px solid #fff;
                 }
 
-                input[id="male"]:checked + label{
+                input[id="maleOne"]:checked + label{
                     background-color: #EBAAB7;
+                    border: 1px solid #fff;
                 }
 
-                input[id="femail"]:checked + label::after{
+                input[id="femailOne"]:checked + label::after{
                     content:'✔';
                     font-size: 12px;
-                    width: 8px;
-                    height: 8px;
                     text-align: center;
                     position: absolute;
                     left: 4px;
@@ -131,11 +192,29 @@ export const FemailInfo = styled.div`
                     color: #fff;
                 }
 
-                input[id="male"]:checked + label::after{
+                input[id="maleOne"]:checked + label::after{
                     content:'✔';
                     font-size: 12px;
-                    width: 8px;
-                    height: 8px;
+                    text-align: center;
+                    position: absolute;
+                    left: 4px;
+                    top: 4px;
+                    color: #fff;
+                }
+                
+                input[id="femailTwo"]:checked + label{
+                    background-color: #EBAAB7;
+                    border: 1px solid #fff;
+                }
+
+                input[id="maleTwo"]:checked + label{
+                    background-color: #EBAAB7;
+                    border: 1px solid #fff;
+                }
+
+                input[id="femailTwo"]:checked + label::after{
+                    content:'✔';
+                    font-size: 12px;
                     text-align: center;
                     position: absolute;
                     left: 4px;
@@ -143,7 +222,15 @@ export const FemailInfo = styled.div`
                     color: #fff;
                 }
 
-  
+                input[id="maleTwo"]:checked + label::after{
+                    content:'✔';
+                    font-size: 12px;
+                    text-align: center;
+                    position: absolute;
+                    left: 4px;
+                    top: 4px;
+                    color: #fff;
+                }
             }
         }
 
@@ -168,19 +255,8 @@ export const FemailInfo = styled.div`
                 }
             }
         }
-    }
 
-   
-
-`
-
-
-export const MalelInfo = styled.div`
-    border: 1px solid #A58187;
-
-`
-
-export const SubmitForm = styled.form`
+       
 
 
 `
