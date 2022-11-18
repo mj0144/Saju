@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Title from "assets/images/title.png";
 import Femail from "assets/images/femail.png";
 import Male from "assets/images/male.png";
@@ -6,11 +6,16 @@ import { BsPlus } from "@react-icons/all-files/bs/BsPlus";
 import { InfoContainer, Frame, InsertInfo, SubmitForm } from "./style";
 
 const Info = () =>{
+    const inputRef = useRef();
+    // const changeDisabled = (e) => {
+    //     e.target.checked === true ? 
+    // }
+    console.log(inputRef)
 
     return (
         <InfoContainer>
             <Frame>
-                <div>
+                <div className="titleWrap">
                     <h1>우리는 얼마나 잘맞을까?</h1>
                     <img src={Title} alt="Title"/>
                 </div>
@@ -45,7 +50,7 @@ const Info = () =>{
                                 <input type="text" placeholder="생년월일"/>
                             </li>
                             <li>
-                                <input type="text" placeholder="태어난 시간"/>
+                                <input type="text" placeholder="태어난 시간" ref={inputRef}/>
                             </li>
                         </ul>
                        
@@ -73,7 +78,7 @@ const Info = () =>{
                             </dt>
                             <dd>
                                 <label>여</label>
-                                <input type="checkbox" id="femailTwo"/>
+                                <input type="checkbox" id="femailTwo" />
                                 <label htmlFor="femailTwo"></label>
                             </dd>
                             <dd>
@@ -90,13 +95,13 @@ const Info = () =>{
                                 <input type="text" placeholder="생년월일"/>
                             </li>
                             <li>
-                                <input type="text" placeholder="태어난 시간"/>
+                                <input type="text" placeholder="태어난 시간" ref={inputRef}/>
                             </li>
                         </ul>
                     </SubmitForm>
 
                     <p className="noTime">
-                        <input type="checkbox" id="maleBorn"/>
+                        <input type="checkbox" id="maleBorn" />
                         <label htmlFor="maleBorn"></label>
                         <span>태어난 시간 모름</span>
                     </p>

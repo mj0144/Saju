@@ -21,12 +21,31 @@ export const Frame = styled.div`
     gap: 30px;
     text-align: center;
     
-    & div{
+    .titleWrap{
         padding-top: 8%;
         &  h1{
             color: #9B6F73;
             font-size: 24px;
             font-weight: 900;
+        }
+    }
+
+    & div:last-of-type{
+        padding: 4% 0 8%;
+
+        & button{
+            border: 2px solid #9B6F73;
+            background-color: #FBE8E7;
+            padding: 1rem 3em;
+            font-size: 2em;
+            font-weight: 600;
+            color: #6E6360;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        & button:hover{
+            color: brown;
         }
     }
    
