@@ -20,6 +20,8 @@ export const Frame = styled.div`
     align-items: center;
     gap: 30px;
     text-align: center;
+    border: 3px solid #9B6F73;
+
     
     .titleWrap{
         padding-top: 8%;

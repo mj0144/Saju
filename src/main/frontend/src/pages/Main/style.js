@@ -20,7 +20,9 @@ export const Frame = styled.div`
     align-items: center;
     gap: 30px;
     text-align: center;
+    border: 3px solid #9B6F73;
     
+
     & div{
         &  h1{
             color: #9B6F73;
