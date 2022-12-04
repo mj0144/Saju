@@ -2,42 +2,85 @@ import React, { useRef, useState } from "react";
 import Title from "assets/images/title.png";
 import Femail from "assets/images/femail.png";
 import Male from "assets/images/male.png";
-import axios from "axios";
+import { TimePicker } from "antd";
 import { BsPlus } from "@react-icons/all-files/bs/BsPlus";
 import { InfoContainer, Frame, InsertInfo, SubmitForm } from "./style";
 
 const Info = () =>{
     const inputRef = useRef();
     const imgRef = useRef();
-    const [checked, setChecked] = useState([]);
+    const [birthOne, setBirthOne] = useState(false);
+    const [birthTwo, setBirthTwo] = useState(false);
+    const [timeOne, settimeOne] = useState(false);
+    const [timeTwo, settimeTwo] = useState(false);
     const [defaultCheckOne, setDefaultCheckOne] = useState(true);
     const [defaultCheckTwo, setDefaultCheckTwo] = useState(true);
-    const [maleCheck, setMaleCheck] = useState(false);
     const [changeImgOne, setChangeImgOne] = useState(true);
     const [changeImgTwo, setChangeImgTwo] = useState(true);
 
 
     // 남/여 선택
-    const checkedBoxOne = (e, id) => {
+    const checkedBoxOne = (e) => {
         const check = e.target.checked;
         const val = e.target.value;
         const idx = e.target.id;
 
-        if(idx.includes("One")){
-            if(check) {
-                setDefaultCheckOne(!defaultCheckOne);
-                setChangeImgOne(!changeImgOne);
-            };
+        if(check){
+            switch(idx.includes("One")){
+                case true: 
+                return(
+                        setDefaultCheckOne(!defaultCheckOne),
+                        setChangeImgOne(!changeImgOne))
+                    
+                case false:
+                    return(
+                        setDefaultCheckTwo(!defaultCheckTwo),
+                        setChangeImgTwo(!changeImgTwo)
+                    )
+            }
         }
 
-        if(idx.includes("Two")){
-            if(check) {
-                setDefaultCheckTwo(!defaultCheckTwo);
-                setChangeImgTwo(!changeImgTwo);
-            };
-        }
+        // if(idx.includes("One")){
+        //     if(check) {
+        //         setDefaultCheckOne(!defaultCheckOne);
+        //         setChangeImgOne(!changeImgOne);
+        //     };
+        // }
+
+        // if(idx.includes("Two")){
+        //     if(check) {
+        //         setDefaultCheckTwo(!defaultCheckTwo);
+        //         setChangeImgTwo(!changeImgTwo);
+        //     };
+        // }
 
     }
+
+    const changeBirth = (e) => {
+        const name = e.target.name;
+
+        switch(name){
+            case "birthOne":
+                return setBirthOne(!birthOne);
+
+            case "birthTwo":
+                return setBirthTwo(!birthTwo);
+        }
+            
+    }
+
+    // useEffect(() => {
+    //     async function fetchData(){
+    //         try{
+    //             const data = await axios.post("http://localhost:8080/saju/v1.0/result/info");
+    //             console.log(data)
+    //         }catch(err){
+    //             console.log(err)
+    //         } 
+            
+    //     }
+    //     fetchData();
+    // }, [])
     
     // const checkedBoxTwo = (e) => {
     //     const check = e.target.checked;
@@ -46,10 +89,6 @@ const Info = () =>{
     //         setChangeImg(!changeImg);
     //     };
     // }
-
-    const checkingBox = (e) => {
-        console.dir(e.target)
-    }
 
     // const changeDisabled = (e) => {
     //     e.target.checked === true ? 
@@ -114,10 +153,15 @@ const Info = () =>{
                                 <input type="text" placeholder="이름"/>
                             </li>
                             <li>
-                                <input type="text" placeholder="생년월일"/>
+                            {birthOne ? 
+                                    (<input type="date" />)
+                                    :
+                                    (<input type="text" name="birthOne" placeholder="생년월일" onClick={changeBirth} />)
+                            }
                             </li>
                             <li>
-                                <input type="text" placeholder="태어난 시간" ref={inputRef}/>
+                                <TimePicker use12Hours placeholder="H/M/S" />
+                                <input type="text" placeholder="태어난 시간" ref={inputRef} />
                             </li>
                         </ul>
                        
@@ -171,7 +215,11 @@ const Info = () =>{
                                 <input type="text" placeholder="이름"/>
                             </li>
                             <li>
-                                <input type="text" placeholder="생년월일"/>
+                            {birthTwo ? 
+                                    (<input type="date" />)
+                                    :
+                                    (<input type="text" name="birthTwo" placeholder="생년월일" onClick={changeBirth} />)
+                            }
                             </li>
                             <li>
                                 <input type="text" placeholder="태어난 시간" ref={inputRef}/>
@@ -187,7 +235,7 @@ const Info = () =>{
 
                 </InsertInfo>
 
-                <div>
+                <div className="resultBtn">
                     <button type="submit">결과보기</button>
                 </div>
             </Frame>

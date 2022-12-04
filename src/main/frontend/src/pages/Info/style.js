@@ -32,7 +32,7 @@ export const Frame = styled.div`
         }
     }
 
-    & div:last-of-type{
+    & .resultBtn{
         padding: 4% 0 8%;
 
         & button{
@@ -273,6 +273,25 @@ export const SubmitForm = styled.form`
 
                 & input::placeholder{
                     color: #6E6360;
+                }
+
+                & .ant-picker{
+                        border: 2px solid #A58187;
+                        border-radius: 0px;
+                        background-color: rgba(255,255,255,0.5);
+                        padding: 4% 5%;
+                        width: 204px;
+                    & div{
+                        
+                        & input{
+                            font-weight: 900;
+                            font-size: 18px;
+                        }
+
+                        & input::placeholder{
+                            color: #6E6360;
+                        }
+                    }
                 }
             }
         }
