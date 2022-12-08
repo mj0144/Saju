@@ -6,6 +6,18 @@ export const InfoContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media all and (max-width: 640px){
+        max-width: 360px;
+    }
+
+    .disabled{
+        background-color: rgba(0, 0, 0, 0.12) !important;
+        cursor: not-allowed;
+        color: rgba(0, 0, 0, 0.26) !important;
+        border: 2px solid rgba(0, 0, 0, 0.12) !important;
+        border-radius: 4px;
+    }
 `
 
 export const Frame = styled.div`
@@ -25,6 +37,7 @@ export const Frame = styled.div`
     
     .titleWrap{
         padding-top: 8%;
+
         &  h1{
             color: #9B6F73;
             font-size: 24px;
@@ -262,13 +275,20 @@ export const SubmitForm = styled.form`
             gap: 20px;
 
             & li{
+
                 & input{
                     padding: 6% 4%;
                     width: 180px;
                     font-weight: 900;
                     font-size: 18px;
                     border: 2px solid #A58187;
+                    border-radius: 4px;
                     background-color: rgba(255,255,255,0.5);
+                }
+
+                & input[type="date"]{
+                    color: #6E6360;
+                    line-height: unset;
                 }
 
                 & input::placeholder{
@@ -279,8 +299,10 @@ export const SubmitForm = styled.form`
                         border: 2px solid #A58187;
                         border-radius: 0px;
                         background-color: rgba(255,255,255,0.5);
-                        padding: 4% 5%;
-                        width: 204px;
+                        padding: 4.4% 5%;
+                        width: 203px;
+                        border-radius: 4px;
+
                     & div{
                         
                         & input{

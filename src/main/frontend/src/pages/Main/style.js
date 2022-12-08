@@ -6,6 +6,10 @@ export const MainContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media all and (max-width: 640px){
+        max-width: 360px;
+    }
 `
 
 export const Frame = styled.div`
