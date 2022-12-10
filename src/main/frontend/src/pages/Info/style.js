@@ -9,6 +9,7 @@ export const InfoContainer = styled.section`
 
     @media all and (max-width: 640px){
         max-width: 360px;
+        margin: 1rem auto;
     }
 
     .disabled{
@@ -17,6 +18,7 @@ export const InfoContainer = styled.section`
         color: rgba(0, 0, 0, 0.26) !important;
         border: 2px solid rgba(0, 0, 0, 0.12) !important;
         border-radius: 4px;
+        transition: all 0.4s;
     }
 `
 
@@ -33,6 +35,16 @@ export const Frame = styled.div`
     gap: 30px;
     text-align: center;
     border: 3px solid #9B6F73;
+
+    @media all and (max-width: 640px){
+        max-width: 90%;
+
+        & .resultBtn{
+            & button{
+                padding: 0.7rem 2.8em !important;
+            }
+        }
+    }
 
     
     .titleWrap{
@@ -74,6 +86,10 @@ export const InsertInfo = styled.div`
     gap: 2em;
     position: relative;
     justify-content: flex-end;
+
+    @media all and (max-width: 640px){
+        justify-content: center;
+    }
 
     & figure{
         border: 1px solid #9B6F73;
@@ -128,6 +144,11 @@ export const InsertInfo = styled.div`
             background-color: #fff;
             margin-right: 1rem;
             vertical-align: middle;
+
+            @media all and (max-width: 640px){
+                width: 24px;
+                height: 24px;
+            }
         }
 
         input[id="femailBorn"]:checked + label{
@@ -176,6 +197,10 @@ export const SubmitForm = styled.form`
         gap: 20px;
         width: 240px;
         padding-top: 4%;
+
+        @media all and (max-width: 640px){
+            width: unset;
+        }
 
         & dl{
             display: flex;

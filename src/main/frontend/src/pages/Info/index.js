@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Title from "assets/images/title.png";
 import Femail from "assets/images/femail.png";
 import Male from "assets/images/male.png";
 import { TimePicker } from "antd";
 // import { BsPlus } from "@react-icons/all-files/bs/BsPlus";
+import { redirect, Link } from "react-router-dom";
 import { InfoContainer, Frame, InsertInfo, SubmitForm } from "./style";
+import { createBrowserHistory } from "history";
 
 const Info = () =>{
+    const history = createBrowserHistory();
     const [birthOne, setBirthOne] = useState(false);
     const [birthTwo, setBirthTwo] = useState(false);
     const [timeOne, setTimeOne] = useState(false);
@@ -17,7 +20,42 @@ const Info = () =>{
     const [changeImgTwo, setChangeImgTwo] = useState(true);
     const [disOne, setDisOne] = useState(false);
     const [disTwo, setDisTwo] = useState(false);
+    
+    // 새로고침 막기 변수
+    const preventClose = (e) => {
+        e.preventDefault();
+        e.returnValue = ""; // chrome에서는 설정이 필요해서 넣은 코드
+    }
 
+    // 뒤로가기 버튼 클릭 이벤트
+    const prevClick = (e) => {
+        if(window.confirm("정보가 저장되지 않습니다. 페이지를 이동하시겠습니까?")) return;
+    }
+
+    // 뒤로가기 이벤트 감지
+    const prevMove = history.listen(e => {
+        if(history.action === "POP"){
+            if(e.location.pathname === "/") prevClick();
+            
+        }
+        
+        console.log(e)
+    })
+
+    // 브라우저에 렌더링 시 한 번만 실행하는 코드
+    useEffect(() => {
+        (() => {
+            prevMove();
+            // window.addEventListener("beforeunload", preventClose);    
+        })();
+
+        return () => {
+            // window.removeEventListener("beforeunload", preventClose);
+        };
+    },[]);
+
+   
+  
 
     // 남/여 선택
     const checkedBoxOne = (e) => {
@@ -107,6 +145,11 @@ const Info = () =>{
         }
     }
 
+    // 결과보기 유효성검사
+    const resultSubmit = (e) => {
+        console.log(e)
+    }
+
     // useEffect(() => {
     //     async function fetchData(){
     //         try{
@@ -147,7 +190,7 @@ const Info = () =>{
                         <span onClick={clickUpLoad} style={{visibility: "hidden"}}><BsPlus /></span> */}
                     </figure>
 
-                    <SubmitForm>
+                    <SubmitForm >
                         <dl>
                             <dt>
                                 <label>성별</label>
@@ -293,7 +336,7 @@ const Info = () =>{
                 </InsertInfo>
 
                 <div className="resultBtn">
-                    <button type="submit">결과보기</button>
+                    <Link to="/result"><button type="submit" onSubmit={(e) => resultSubmit}>결과보기</button></Link>
                 </div>
             </Frame>
         </InfoContainer>

@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
-export const MainContainer = styled.section`
+export const ReslutContainer = styled.section`
     background-color: #F3B5BB;
     width: 100%;
     display: flex;
@@ -32,27 +32,9 @@ export const Frame = styled.div`
         }
     }
 
-    & p{
-        color: #6E6360;
-        font-weight: 900;
-        font-size: 20px;
-    }
-
     & article{
-        background-color: #EBAAB7;
-        padding: 20px 40px;
-        border-radius: 40px;
-        margin-top: 40px;
-
-        & strong{
-            color: #fff;
-            font-size: 20px;
-            font-weight: 900;
-            cursor: pointer;
-        }
-
-        & strong:hover{
-            color: brown;
-        }
+        display: flex;
+        flex-direction: row;
+        
     }
 `

@@ -127,5 +127,5 @@ a{
 	text-decoration: none;
 }
 a:visited{
-	color: #e2e2e2;
+	color: inherit;
 }
