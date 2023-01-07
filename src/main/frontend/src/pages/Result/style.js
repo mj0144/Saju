@@ -24,7 +24,7 @@ export const Frame = styled.div`
     border: 3px solid #9B6F73;
     
 
-    & div{
+    & .titleWrap{
         &  h1{
             color: #9B6F73;
             font-size: 24px;
@@ -35,6 +35,10 @@ export const Frame = styled.div`
     & article{
         display: flex;
         flex-direction: row;
-        
+    }
+
+    & .totalBox{
+        border: 3px solid #9B6F73;
+        background-color: #fff;
     }
 `

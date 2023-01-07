@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import Title from "assets/images/title.png";
-import Femail from "assets/images/femail.png";
-import Male from "assets/images/male.png";
-import { TimePicker } from "antd";
+import React, { useState, useEffect } from 'react';
+import Title from 'assets/images/title.png';
+import Femail from 'assets/images/femail.png';
+import Male from 'assets/images/male.png';
+import { TimePicker } from 'antd';
+import axios from 'axios';
 // import { BsPlus } from "@react-icons/all-files/bs/BsPlus";
-import { redirect, Link } from "react-router-dom";
-import { InfoContainer, Frame, InsertInfo, SubmitForm } from "./style";
-import { createBrowserHistory } from "history";
+import { Link } from 'react-router-dom';
+import { InfoContainer, Frame, InsertInfo, SubmitForm } from './style';
+import { createBrowserHistory } from 'history';
 
-const Info = () =>{
+const Info = () => {
     const history = createBrowserHistory();
     const [birthOne, setBirthOne] = useState(false);
     const [birthTwo, setBirthTwo] = useState(false);
@@ -20,60 +21,51 @@ const Info = () =>{
     const [changeImgTwo, setChangeImgTwo] = useState(true);
     const [disOne, setDisOne] = useState(false);
     const [disTwo, setDisTwo] = useState(false);
-    
+
     // 새로고침 막기 변수
-    const preventClose = (e) => {
+    const preventClose = e => {
         e.preventDefault();
-        e.returnValue = ""; // chrome에서는 설정이 필요해서 넣은 코드
-    }
+        e.returnValue = ''; // chrome에서는 설정이 필요해서 넣은 코드
+    };
 
     // 뒤로가기 버튼 클릭 이벤트
-    const prevClick = (e) => {
-        if(window.confirm("정보가 저장되지 않습니다. 페이지를 이동하시겠습니까?")) return;
-    }
+    const prevClick = e => {
+        if (window.confirm('정보가 저장되지 않습니다. 페이지를 이동하시겠습니까?')) return;
+    };
 
     // 뒤로가기 이벤트 감지
     const prevMove = history.listen(e => {
-        if(history.action === "POP"){
-            if(e.location.pathname === "/") prevClick();
-            
+        if (history.action === 'POP') {
+            if (e.location.pathname === '/') prevClick();
         }
-        
-        console.log(e)
-    })
+
+        console.log(e);
+    });
 
     // 브라우저에 렌더링 시 한 번만 실행하는 코드
     useEffect(() => {
         (() => {
             prevMove();
-            // window.addEventListener("beforeunload", preventClose);    
+            // window.addEventListener("beforeunload", preventClose);
         })();
 
         return () => {
             // window.removeEventListener("beforeunload", preventClose);
         };
-    },[]);
-
-   
-  
+    }, []);
 
     // 남/여 선택
-    const checkedBoxOne = (e) => {
+    const checkedBoxOne = e => {
         const check = e.target.checked;
         const idx = e.target.id;
 
-        if(check){
-            switch(idx.includes("One")){
-                case true: 
-                return(
-                        setDefaultCheckOne(!defaultCheckOne),
-                        setChangeImgOne(!changeImgOne))
-                    
+        if (check) {
+            switch (idx.includes('One')) {
+                case true:
+                    return setDefaultCheckOne(!defaultCheckOne), setChangeImgOne(!changeImgOne);
+
                 case false:
-                    return(
-                        setDefaultCheckTwo(!defaultCheckTwo),
-                        setChangeImgTwo(!changeImgTwo)
-                    )
+                    return setDefaultCheckTwo(!defaultCheckTwo), setChangeImgTwo(!changeImgTwo);
 
                 default:
                     return;
@@ -93,75 +85,72 @@ const Info = () =>{
         //         setChangeImgTwo(!changeImgTwo);
         //     };
         // }
+    };
 
-    }
-
-    // 태어난 시간 인풋 
-    const changeTime = (e) => {
+    // 태어난 시간 인풋
+    const changeTime = e => {
         const name = e.target.name;
 
-        switch(name){
-            case "timeOne":
+        switch (name) {
+            case 'timeOne':
                 return setTimeOne(!timeOne);
 
-            case "timeTwo":
+            case 'timeTwo':
                 return setTimeTwo(!timeTwo);
-                                
+
             default:
                 return;
         }
-    }
+    };
 
     // 생년월일 인풋
-    const changeBirth = (e) => {
+    const changeBirth = e => {
         const name = e.target.name;
 
-        switch(name){
-            case "birthOne":
+        switch (name) {
+            case 'birthOne':
                 return setBirthOne(!birthOne);
 
-            case "birthTwo":
+            case 'birthTwo':
                 return setBirthTwo(!birthTwo);
 
             default:
                 return;
         }
-            
-    }
+    };
 
     // 태어난 시간 disabled
-    const changeDisabled = (e) => {
+    const changeDisabled = e => {
         const id = e.target.id;
 
-        switch(id){
-            case "femailBorn":
+        switch (id) {
+            case 'femailBorn':
                 return setDisOne(!disOne);
-            
-            case "maleBorn":
+
+            case 'maleBorn':
                 return setDisTwo(!disTwo);
 
             default:
                 return;
         }
-    }
+    };
 
     // 결과보기 유효성검사
-    const resultSubmit = (e) => {
-        console.log(e)
-    }
+    const resultSubmit = e => {
+        console.log(e);
+    };
 
-    // useEffect(() => {
-    //     async function fetchData(){
-    //         try{
-    //             const data = await axios.post("http://localhost:8080/saju/v1.0/result/info");
-    //             console.log(data)
-    //         }catch(err){
-    //             console.log(err)
-    //         } 
-            
-    //     }
-    //     fetchData();
-    // }, [])
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const data = await axios.post('http://localhost:8080/saju/v1.0/result/info');
+                console.log(data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchData();
+    }, []);
 
     // 이미지 업로드 함수
     // const clickUpLoad = (e) => {
@@ -180,87 +169,87 @@ const Info = () =>{
             <Frame>
                 <div className="titleWrap">
                     <h1>우리는 얼마나 잘맞을까?</h1>
-                    <img src={Title} alt="Title"/>
+                    <img src={Title} alt="Title" />
                 </div>
 
                 <InsertInfo>
                     <figure>
-                        <img src={changeImgOne ? Femail : Male} alt="Feamil"/>
+                        <img src={changeImgOne ? Femail : Male} alt="Feamil" />
                         {/* <input ref={imgRef} type="file" accept="image/*" name="file" style={{display: "none"}} onChange={onImgUpLoad} />
                         <span onClick={clickUpLoad} style={{visibility: "hidden"}}><BsPlus /></span> */}
                     </figure>
 
-                    <SubmitForm >
+                    <SubmitForm>
                         <dl>
                             <dt>
                                 <label>성별</label>
                             </dt>
                             <dd>
                                 <label>여</label>
-                                <input 
-                                    type="checkbox" 
-                                    id="femailOne" 
-                                    value="femail" 
-                                    onChange={checkedBoxOne} 
-                                    checked={defaultCheckOne ? true : false}  
-                                    />
+                                <input
+                                    type="checkbox"
+                                    id="femailOne"
+                                    value="femail"
+                                    onChange={checkedBoxOne}
+                                    checked={defaultCheckOne ? true : false}
+                                />
                                 <label htmlFor="femailOne"></label>
                             </dd>
                             <dd>
                                 <label>남</label>
-                                <input 
-                                    type="checkbox" 
-                                    id="maleOne" 
+                                <input
+                                    type="checkbox"
+                                    id="maleOne"
                                     value="male"
-                                    onChange={checkedBoxOne} 
+                                    onChange={checkedBoxOne}
                                     checked={defaultCheckOne ? false : true}
-                                    />
+                                />
                                 <label htmlFor="maleOne"></label>
                             </dd>
                         </dl>
                         <ul>
                             <li>
-                                <input type="text" placeholder="이름"/>
+                                <input type="text" placeholder="이름" />
                             </li>
                             <li>
-                            {birthOne ? 
-                                (<input type="date" />)
-                                :
-                                (<input type="text" name="birthOne" placeholder="생년월일" onClick={changeBirth} />)
-                            }
+                                {birthOne ? (
+                                    <input type="date" />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        name="birthOne"
+                                        placeholder="생년월일"
+                                        onClick={changeBirth}
+                                    />
+                                )}
                             </li>
                             <li>
-                            {timeOne ? 
-                                (
-                                    <TimePicker 
-                                        use12Hours 
-                                        placeholder="H/M/S" 
-                                        className={disOne ? "disabled" : ""}
+                                {timeOne ? (
+                                    <TimePicker
+                                        use12Hours
+                                        placeholder="H/M/S"
+                                        className={disOne ? 'disabled' : ''}
                                         disabled={disOne ? true : false}
                                     />
-                                ) 
-                                :
-                                (
-                                    <input 
-                                        type="text" 
-                                        name="timeOne" 
-                                        placeholder="태어난 시간" 
-                                        onClick={changeTime} 
-                                        disabled={disOne ? true : false} 
-                                        className={disOne ? "disabled" : ""}
+                                ) : (
+                                    <input
+                                        type="text"
+                                        name="timeOne"
+                                        placeholder="태어난 시간"
+                                        onClick={changeTime}
+                                        disabled={disOne ? true : false}
+                                        className={disOne ? 'disabled' : ''}
                                     />
-                                )
-                            }
+                                )}
                             </li>
                         </ul>
                     </SubmitForm>
 
                     <p className="noTime">
-                        <input type="checkbox" id="femailBorn" onClick={changeDisabled}/>
+                        <input type="checkbox" id="femailBorn" onClick={changeDisabled} />
                         <label htmlFor="femailBorn"></label>
                         <span>태어난 시간 모름</span>
                     </p>
-
                 </InsertInfo>
 
                 <InsertInfo>
@@ -276,53 +265,58 @@ const Info = () =>{
                             </dt>
                             <dd>
                                 <label>여</label>
-                                <input 
-                                    type="checkbox" 
-                                    id="femailTwo" 
-                                    onChange={checkedBoxOne} 
-                                    checked={defaultCheckTwo ? false : true} 
-
-                                    />
+                                <input
+                                    type="checkbox"
+                                    id="femailTwo"
+                                    onChange={checkedBoxOne}
+                                    checked={defaultCheckTwo ? false : true}
+                                />
                                 <label htmlFor="femailTwo"></label>
                             </dd>
                             <dd>
                                 <label>남</label>
-                                <input 
-                                    type="checkbox" 
-                                    id="maleTwo" 
-                                    onChange={checkedBoxOne} 
-                                    checked={defaultCheckTwo ? true : false} 
-
-                                    />
+                                <input
+                                    type="checkbox"
+                                    id="maleTwo"
+                                    onChange={checkedBoxOne}
+                                    checked={defaultCheckTwo ? true : false}
+                                />
                                 <label htmlFor="maleTwo"></label>
                             </dd>
                         </dl>
                         <ul>
                             <li>
-                                <input type="text" placeholder="이름"/>
+                                <input type="text" placeholder="이름" />
                             </li>
                             <li>
-                            {birthTwo ? 
-                                    (<input type="date" />)
-                                    :
-                                    (<input type="text" name="birthTwo" placeholder="생년월일" onClick={changeBirth} />)
-                            }
-                            </li>
-                            <li>
-                            {timeTwo ? 
-                                (<TimePicker use12Hours placeholder="H/M/S" className={disTwo ? "disabled" : ""} />) 
-                                :
-                                (
-                                    <input 
-                                        type="text" 
-                                        name="timeTwo" 
-                                        placeholder="태어난 시간" 
-                                        onClick={changeTime} 
-                                        disabled={disTwo ? true : false}
-                                        className={disTwo ? "disabled" : ""}
+                                {birthTwo ? (
+                                    <input type="date" />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        name="birthTwo"
+                                        placeholder="생년월일"
+                                        onClick={changeBirth}
                                     />
-                                )
-                            }
+                                )}
+                            </li>
+                            <li>
+                                {timeTwo ? (
+                                    <TimePicker
+                                        use12Hours
+                                        placeholder="H/M/S"
+                                        className={disTwo ? 'disabled' : ''}
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        name="timeTwo"
+                                        placeholder="태어난 시간"
+                                        onClick={changeTime}
+                                        disabled={disTwo ? true : false}
+                                        className={disTwo ? 'disabled' : ''}
+                                    />
+                                )}
                             </li>
                         </ul>
                     </SubmitForm>
@@ -332,15 +326,18 @@ const Info = () =>{
                         <label htmlFor="maleBorn"></label>
                         <span>태어난 시간 모름</span>
                     </p>
-
                 </InsertInfo>
 
                 <div className="resultBtn">
-                    <Link to="/result"><button type="submit" onSubmit={(e) => resultSubmit}>결과보기</button></Link>
+                    <Link to="/result">
+                        <button type="submit" onSubmit={e => resultSubmit}>
+                            결과보기
+                        </button>
+                    </Link>
                 </div>
             </Frame>
         </InfoContainer>
-    )
-}
+    );
+};
 
 export default Info;

@@ -37,6 +37,14 @@ const Result = () => {
                     </figure>
                 </article>
 
+                <div className="totalBox">
+                    <ul>
+                        <li>총 평점</li>
+                        <li>95점</li>
+                        <li>궁합 점수도 좋은 우리 사이 == 점수가 낮으면 어캐함? <span><img src={Heart} alt="heart" style={{width: "20px", height: "20px"}}/></span></li>
+                    </ul>
+                </div>
+                
                 
             </Frame>
         </ReslutContainer>
