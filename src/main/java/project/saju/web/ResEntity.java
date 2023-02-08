@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
+import project.saju.exhandler.ResultMsg;
 
 import java.util.List;
 
@@ -14,9 +15,9 @@ import java.util.List;
 @NoArgsConstructor
 public class ResEntity {
 
-    private String resultCode;
+    private ResultMsg resultCode;
     private HttpStatus httpStatus;
     private String resultMsg;
-    private Integer count;
     private List<Object> result;
+
 }

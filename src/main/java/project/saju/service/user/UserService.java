@@ -9,6 +9,8 @@ import project.saju.service.saju.SajuService;
 import project.saju.web.dto.UserResponseDto;
 import project.saju.web.dto.UserSaveRequestDto;
 
+import java.util.NoSuchElementException;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -26,9 +28,9 @@ public class UserService {
     }
 
     public UserResponseDto findBySeq(int seq) {
-//        UserInfo entity = userRepository.findById(seq)
-//                .orElseThrow(() -> new IllegalAccessError("해당하는 사용자가 존재하지 않습니다. seq=" + seq));
-        UserInfo entity = userRepository.findById(seq).get();
+        UserInfo entity = userRepository.findById(seq)
+                .orElseThrow(() -> new NoSuchElementException("해당하는 사용자가 존재하지 않습니다. seq=" + seq));
+
         return new UserResponseDto(entity);
     }
 

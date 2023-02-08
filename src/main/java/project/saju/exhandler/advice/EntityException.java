@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import project.saju.exhandler.ResultMsg;
 import project.saju.web.ResEntity;
 
 import java.util.Collections;
@@ -41,7 +42,7 @@ public class EntityException extends ResponseEntityExceptionHandler {
         }
 
         response = response.builder()
-                .resultCode("E999")
+                .resultCode(ResultMsg.E01)
                 .httpStatus(status)
                 .resultMsg(errorMsg)
                 .result(Collections.emptyList())

@@ -3,6 +3,7 @@ package project.saju.service.saju;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import project.saju.domain.saju.SajuInfo;
+import project.saju.exception.ScoreException;
 import project.saju.repository.saju.LandScoreRepository;
 import project.saju.repository.saju.SajuRepository;
 import project.saju.repository.saju.SkyScoreRepository;
@@ -36,13 +37,11 @@ public class SajuService {
         list.stream().forEach(user -> {
             switch (user.getSex()) {
                 case "1" : {
-                    //sajuRequestDto.setSeq_user(user.getSeq_user());
                     sajuRequestDto.setNmMSky(user.getNm_ilju().substring(0,1));
                     sajuRequestDto.setNmMLand(user.getNm_ilju().substring(1,2));
                     break;
                 }
                 case "2" : {
-                    //sajuRequestDto.setSeq_user(user.getSeq_user());
                     sajuRequestDto.setNmWSky(user.getNm_ilju().substring(0,1));
                     sajuRequestDto.setNmWLand(user.getNm_ilju().substring(1,2));
                     break;
@@ -50,15 +49,17 @@ public class SajuService {
             }
         });
 
-//        int skyScore = skyScoreRepository.findByNmMSkyAndNmWSky(sajuRequestDto);
-//        int landScore = landScoreRepository.findByNmMLandAndNmWLand(sajuRequestDto);
-//        int skyScore = skyScoreRepository.findByNmMSkyAndNmWSky(sajuRequestDto.getNmMSky(), sajuRequestDto.getNmWSky()).get(0).getscoreSky();
-//        int landScore = landScoreRepository.findByNmMLandAndNmWLand(sajuRequestDto.getNmMLand(), sajuRequestDto.getNmWLand()).get(0).getscoreLand();
+        int skyScore = 0;
+        int landScore = 0;
 
-        int skyScore = skyScoreRepository.findByNmMSkyAndNmWSky(sajuRequestDto.getNmMSky(), sajuRequestDto.getNmWSky()).getscoreSky();
-        int landScore = landScoreRepository.findByNmMLandAndNmWLand(sajuRequestDto.getNmMLand(), sajuRequestDto.getNmWLand()).getscoreLand();
+        try{
+            skyScore = skyScoreRepository.findByNmMSkyAndNmWSky(sajuRequestDto.getNmMSky(), sajuRequestDto.getNmWSky()).getscoreSky();
+            landScore = landScoreRepository.findByNmMLandAndNmWLand(sajuRequestDto.getNmMLand(), sajuRequestDto.getNmWLand()).getscoreLand();
+        } catch (NullPointerException exception) {
+            throw new ScoreException("사주 점수정보가 존재하지 않습니다.");
+        }
 
-        return Optional.of(new SajuResponseDto(skyScore, landScore, list));
+        return Optional.ofNullable(new SajuResponseDto(skyScore, landScore, list));
 
     }
 }

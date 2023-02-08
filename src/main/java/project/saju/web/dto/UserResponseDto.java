@@ -17,7 +17,7 @@ public class UserResponseDto {
     private int seq_user;
     private String sex;
 
-    private String nm_saju;
+//    private String nm_saju;
     private String nm_ilju;
 
     @Builder
@@ -26,7 +26,7 @@ public class UserResponseDto {
         this.nm_user = entity.getNm_user();
         this.sex =entity.getSex();
         this.nm_ilju =entity.getNm_ilju();
-        this.nm_saju = entity.getNm_saju();
+//        this.nm_saju = entity.getNm_saju();
     }
 
 }
